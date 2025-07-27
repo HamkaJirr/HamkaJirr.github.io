@@ -56,6 +56,20 @@
       cursor: pointer;
       box-shadow: 0 0 10px #fff;
     }
+
+    /* Efek balon */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      font-size: 40px;
+      animation: rise 10s infinite ease-in;
+      z-index: 999;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -76,6 +90,22 @@
     <source src="https://files.catbox.moe/ap9io1.mp3" type="audio/mpeg">
     Browser kamu tidak mendukung audio.
   </audio>
+
+  <!-- Script Efek Balon -->
+  <script>
+    function createBalloon() {
+      const emoji = ["🎈", "🎉", "🎊"];
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      balloon.textContent = emoji[Math.floor(Math.random() * emoji.length)];
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 11000);
+    }
+
+    setInterval(createBalloon, 500);
+  </script>
 </body>
 </html><!DOCTYPE html>
 <html lang="id">
@@ -135,6 +165,20 @@
       cursor: pointer;
       box-shadow: 0 0 10px #fff;
     }
+
+    /* Efek balon */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      font-size: 40px;
+      animation: rise 10s infinite ease-in;
+      z-index: 999;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -155,5 +199,21 @@
     <source src="https://files.catbox.moe/ap9io1.mp3" type="audio/mpeg">
     Browser kamu tidak mendukung audio.
   </audio>
+
+  <!-- Script Efek Balon -->
+  <script>
+    function createBalloon() {
+      const emoji = ["🎈", "🎉", "🎊"];
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      balloon.textContent = emoji[Math.floor(Math.random() * emoji.length)];
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 11000);
+    }
+
+    setInterval(createBalloon, 500);
+  </script>
 </body>
 </html>
