@@ -1,1 +1,0 @@
-# HamkaJirr.github.io
