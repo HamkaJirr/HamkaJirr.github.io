@@ -239,11 +239,272 @@
     }
 
     function tampilkanPopUp() {
-      alert("🎉 Happy Birthday Adell!💖");
+      alert("🎉 Happy Birthday Adell! Semoga harimu penuh senyum dan cinta 💖");
     }
 
     function bukaKado(element) {
-      alert("🎁 Surprise! tapi boong hhe bingung rek di isian naon😂");
+      alert("🎁 Surprise! Kamu luar biasa dan dicintai banyak orang 💖");
+      let rect = element.getBoundingClientRect();
+      for (let i = 0; i < 50; i++) {
+        let spark = document.createElement('div');
+        spark.className = 'sparkle';
+        spark.style.left = rect.left + rect.width / 2 + 'px';
+        spark.style.top = rect.top + window.scrollY + 'px';
+        spark.style.setProperty('--dx', `${(Math.random() - 0.5) * 200}px`);
+        spark.style.setProperty('--dy', `${(Math.random() - 0.5) * 200}px`);
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
+      }
+    }
+  </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>🎉 Happy Birthday! 🎂</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: #fff;
+      padding-top: 50px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 70px;
+      animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4; }
+      to { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
+    }
+
+    img.foto {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+      border: 5px solid white;
+      box-shadow: 0 0 25px white;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .pesan {
+      font-size: 24px;
+      margin: 40px auto;
+      padding: 20px;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      color: #e91e63;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .gift-box {
+      font-size: 100px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .marquee {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 0;
+      color: yellow;
+      font-weight: bold;
+      font-size: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      animation: scroll 15s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      font-size: 40px;
+      animation: rise 10s infinite ease-in;
+      z-index: 999;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2;}
+      50% {opacity: 1;}
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: yellow;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkleAnim 0.8s ease-out forwards;
+      z-index: 1000;
+    }
+
+    @keyframes sparkleAnim {
+      to {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .panda-corner {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+    }
+
+    .panda-corner.tl { top: 0; left: 0; }
+    .panda-corner.tr { top: 0; right: 0; }
+    .panda-corner.bl { bottom: 0; left: 0; }
+    .panda-corner.br { bottom: 0; right: 0; }
+
+    .orbit-panda {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      animation: orbit 10s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+    }
+  </style>
+</head>
+<body onload="tampilkanPopUp()">
+
+  <h1>🎂 Happy Birthday <span style="color:yellow">Adell</span>! 🎉</h1>
+  <h2>Semoga harimu penuh kebahagiaan 💖</h2>
+
+  <div style="position: relative; display: inline-block;">
+    <img src="https://i.imgur.com/Z4pgqRu.jpeg" alt="Foto" class="foto">
+    <img src="https://files.catbox.moe/ie0b0k.png" class="orbit-panda" style="top: -120px; left: 0;">
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-text">🎈 Happy Birthday Adell! Semoga panjang umur, sehat selalu, dan penuh kebahagiaan! 🎉🎂</div>
+  </div>
+
+  <div class="pesan">
+    Hari ini adalah hari yang spesial, karena kamu telah menjadi pribadi yang lebih hebat!  
+    Terima kasih sudah menjadi seseorang yang luar biasa.  
+    Tetap semangat dan terus bersinar ya! 🌟
+  </div>
+
+  <!-- Musik -->
+  <button onclick="document.getElementById('musik').play()">▶️ Putar Musik</button>
+  <audio id="musik">
+    <source src="https://files.catbox.moe/ap9io1.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <!-- Kado -->
+  <div style="margin-top: 40px;">
+    <div class="gift-box" onclick="bukaKado(this)">🎁</div>
+    <button onclick="bukaKado(this)">🎁 Buka Kado</button>
+  </div>
+
+  <!-- Background -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Panda di sudut -->
+  <img src="https://files.catbox.moe/ie0b0k.png" class="panda-corner tl">
+  <img src="https://files.catbox.moe/ie0b0k.png" class="panda-corner tr">
+  <img src="https://files.catbox.moe/ie0b0k.png" class="panda-corner bl">
+  <img src="https://files.catbox.moe/ie0b0k.png" class="panda-corner br">
+
+  <!-- Script -->
+  <script>
+    function createBalloon() {
+      const emoji = ["🎈", "🎉", "🎊"];
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      balloon.textContent = emoji[Math.floor(Math.random() * emoji.length)];
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 11000);
+    }
+
+    setInterval(createBalloon, 500);
+
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      document.getElementById('stars').appendChild(star);
+    }
+
+    function tampilkanPopUp() {
+      alert("🎉 Happy Birthday Adell! 💖");
+    }
+
+    function bukaKado(element) {
+      alert("🎁 Surprise! TAPI BOONG HHE BINGUNG REK ISIAN NAON 💖");
       let rect = element.getBoundingClientRect();
       for (let i = 0; i < 50; i++) {
         let spark = document.createElement('div');
