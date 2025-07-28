@@ -11,6 +11,7 @@
       color: #fff;
       padding-top: 50px;
       overflow-x: hidden;
+      position: relative;
     }
 
     h1 {
@@ -45,7 +46,7 @@
     }
 
     button {
-      margin-top: 30px;
+      margin-top: 20px;
       padding: 12px 24px;
       border: none;
       border-radius: 12px;
@@ -57,7 +58,37 @@
       box-shadow: 0 0 10px #fff;
     }
 
-    /* Efek balon */
+    .gift-box {
+      font-size: 100px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .marquee {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 0;
+      color: yellow;
+      font-weight: bold;
+      font-size: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      animation: scroll 15s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
     .balloon {
       position: fixed;
       bottom: -100px;
@@ -70,13 +101,61 @@
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(-110vh); opacity: 0; }
     }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2;}
+      50% {opacity: 1;}
+    }
+
+    /* Efek Sparkle */
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: yellow;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkleAnim 0.8s ease-out forwards;
+      z-index: 1000;
+    }
+
+    @keyframes sparkleAnim {
+      to {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
-<body>
+<body onload="tampilkanPopUp()">
+
   <h1>🎂 Selamat Ulang Tahun, <span style="color:yellow">Adell</span>! 🎉</h1>
   <h2>Semoga harimu penuh kebahagiaan 💖</h2>
 
   <img src="https://i.imgur.com/Z4pgqRu.jpeg" alt="Foto">
+
+  <div class="marquee">
+    <div class="marquee-text">🎈 Selamat ulang tahun Adell! Semoga panjang umur, sehat selalu, dan penuh kebahagiaan! 🎉🎂</div>
+  </div>
 
   <div class="pesan">
     Hari ini adalah hari yang spesial, karena kamu telah menjadi pribadi yang lebih hebat!  
@@ -91,7 +170,16 @@
     Browser kamu tidak mendukung audio.
   </audio>
 
-  <!-- Script Efek Balon -->
+  <!-- Buka Kado -->
+  <div style="margin-top: 40px;">
+    <div class="gift-box" onclick="bukaKado(this)">🎁</div>
+    <button onclick="bukaKado(this)">🎁 Buka Kado</button>
+  </div>
+
+  <!-- Efek Bintang -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Script -->
   <script>
     function createBalloon() {
       const emoji = ["🎈", "🎉", "🎊"];
@@ -105,7 +193,36 @@
     }
 
     setInterval(createBalloon, 500);
+
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      document.getElementById('stars').appendChild(star);
+    }
+
+    function tampilkanPopUp() {
+      alert("🎉 Selamat Ulang Tahun Adell! Semoga harimu penuh senyum dan cinta 💖");
+    }
+
+    function bukaKado(element) {
+      alert("🎁 Surprise! Kamu luar biasa dan dicintai banyak orang. Semoga semua harapanmu terwujud! 🎉🎂💖");
+      let rect = element.getBoundingClientRect();
+      for (let i = 0; i < 50; i++) {
+        let spark = document.createElement('div');
+        spark.className = 'sparkle';
+        spark.style.left = rect.left + rect.width / 2 + 'px';
+        spark.style.top = rect.top + window.scrollY + 'px';
+        spark.style.setProperty('--dx', `${(Math.random() - 0.5) * 200}px`);
+        spark.style.setProperty('--dy', `${(Math.random() - 0.5) * 200}px`);
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
+      }
+    }
   </script>
+
 </body>
 </html><!DOCTYPE html>
 <html lang="id">
@@ -120,6 +237,7 @@
       color: #fff;
       padding-top: 50px;
       overflow-x: hidden;
+      position: relative;
     }
 
     h1 {
@@ -154,7 +272,7 @@
     }
 
     button {
-      margin-top: 30px;
+      margin-top: 20px;
       padding: 12px 24px;
       border: none;
       border-radius: 12px;
@@ -166,7 +284,37 @@
       box-shadow: 0 0 10px #fff;
     }
 
-    /* Efek balon */
+    .gift-box {
+      font-size: 100px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .marquee {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 0;
+      color: yellow;
+      font-weight: bold;
+      font-size: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      animation: scroll 15s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
     .balloon {
       position: fixed;
       bottom: -100px;
@@ -179,13 +327,61 @@
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(-110vh); opacity: 0; }
     }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2;}
+      50% {opacity: 1;}
+    }
+
+    /* Efek Sparkle */
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: yellow;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkleAnim 0.8s ease-out forwards;
+      z-index: 1000;
+    }
+
+    @keyframes sparkleAnim {
+      to {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
-<body>
-  <h1>🎂 Selamat Ulang Tahun, <span style="color:yellow">Adell</span>! 🎉</h1>
-  <h2>Semoga harimu penuh kebahagiaan 💖</h2>
+<body onload="tampilkanPopUp()">
+
+  <h1>🎂 Happy Birthday <span style="color:yellow">Adell</span>! 🎉</h1>
+  <h2> panjang umur pendek napas 😂</h2>
 
   <img src="https://i.imgur.com/Z4pgqRu.jpeg" alt="Foto">
+
+  <div class="marquee">
+    <div class="marquee-text">🎈 Happy Birthday Adell! Semoga panjang umur, sehat selalu, dan penuh kebahagiaan! 🎉🎂</div>
+  </div>
 
   <div class="pesan">
     Hari ini adalah hari yang spesial, karena kamu telah menjadi pribadi yang lebih hebat!  
@@ -200,7 +396,16 @@
     Browser kamu tidak mendukung audio.
   </audio>
 
-  <!-- Script Efek Balon -->
+  <!-- Buka Kado -->
+  <div style="margin-top: 40px;">
+    <div class="gift-box" onclick="bukaKado(this)">🎁</div>
+    <button onclick="bukaKado(this)">🎁 Buka Kado</button>
+  </div>
+
+  <!-- Efek Bintang -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Script -->
   <script>
     function createBalloon() {
       const emoji = ["🎈", "🎉", "🎊"];
@@ -214,6 +419,35 @@
     }
 
     setInterval(createBalloon, 500);
+
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      document.getElementById('stars').appendChild(star);
+    }
+
+    function tampilkanPopUp() {
+      alert("🎉 Selamat Ulang Tahun Adell! Semoga harimu penuh senyum dan cinta 💖");
+    }
+
+    function bukaKado(element) {
+      alert("🎁 Surprise! Tapi Boong Bingung Erek Isian Naon Hhe");
+      let rect = element.getBoundingClientRect();
+      for (let i = 0; i < 50; i++) {
+        let spark = document.createElement('div');
+        spark.className = 'sparkle';
+        spark.style.left = rect.left + rect.width / 2 + 'px';
+        spark.style.top = rect.top + window.scrollY + 'px';
+        spark.style.setProperty('--dx', `${(Math.random() - 0.5) * 200}px`);
+        spark.style.setProperty('--dy', `${(Math.random() - 0.5) * 200}px`);
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
+      }
+    }
   </script>
+
 </body>
 </html>
